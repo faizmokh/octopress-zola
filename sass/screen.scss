@@ -328,8 +328,8 @@ body > nav .search-results-panel {
   left: 0;
   margin-top: 0.4em;
   position: absolute;
-  right: 0;
   top: 100%;
+  width: 100%;
   z-index: 15;
 }
 
@@ -785,11 +785,6 @@ body > footer a:hover {
     float: right;
     padding-left: 0.8em;
     width: 175px;
-  }
-
-  body > nav .search-results-panel {
-    left: 0.8em;
-    right: 0;
   }
 }
 
