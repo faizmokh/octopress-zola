@@ -21,6 +21,7 @@ Then enable it in `zola.toml`:
 ```toml
 theme = "octopress-zola"
 compile_sass = true
+build_search_index = true
 generate_feeds = true
 feed_filenames = ["atom.xml"]
 
@@ -38,6 +39,7 @@ taxonomies = [
 ## Required Site Setup
 
 - Enable Sass compilation in `zola.toml`
+- Enable `build_search_index = true` if you want the built-in nav search
 - Add a root section or equivalent post section sorted by date
 - Define the `categories` taxonomy if you want archive category links
 
@@ -58,11 +60,7 @@ name = "Blog"
 url = "/"
 
 [extra.octopress.search]
-action = "https://google.com/search"
-site_scope_param = "sitesearch"
-site_scope = "your-domain.example"
 placeholder = "Search"
-query_param = "q"
 
 [[extra.octopress.sidebar.sections]]
 kind = "recent_posts"
@@ -73,6 +71,8 @@ limit = 5
 ## Theme Config
 
 The theme reads its settings from `[extra.octopress]`.
+
+Native nav search uses Zola's generated `elasticlunr.min.js` and `search_index.<lang>.js` assets. Keep `build_search_index = true` enabled when `[extra.octopress.search]` is configured.
 
 Optional header logo:
 
@@ -120,15 +120,3 @@ content = "<p>Rendered as trusted HTML.</p>"
 ```
 
 Mixed sections render in the configured order. Empty `text` content, `links` sections with no valid items, and `recent_posts` sections with no posts are omitted. If every configured section is omitted, no sidebar markup is rendered.
-
-## Intentional Modernizations
-
-- The theme keeps the classic look, but it does not ship legacy JavaScript.
-- Search is configurable rather than hardcoded to `octopress.org`.
-- Sharing links are optional and limited to a simple outbound Tweet action.
-
-## Release Workflow
-
-- Tag releases in this repository when consumer-facing theme changes are ready.
-- Keep release notes focused on template, Sass, asset, and configuration changes.
-- If a demo repository consumes the theme as a submodule, update the submodule pointer after each theme release.

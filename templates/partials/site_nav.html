@@ -16,11 +16,23 @@
   {% endif %}
 
   {% if octopress.search %}
-    <form action="{{ octopress.search.action }}" method="get">
-      <fieldset role="search">
-        <input type="hidden" name="{{ octopress.search.site_scope_param | default(value='sitesearch') }}" value="{{ octopress.search.site_scope }}">
-        <input class="search" type="text" name="{{ octopress.search.query_param | default(value='q') }}" results="0" placeholder="{{ octopress.search.placeholder | default(value='Search') }}">
+    <form class="search-form" role="search" novalidate>
+      <fieldset class="search-fieldset">
+        <input
+          id="nav-search"
+          class="search"
+          type="search"
+          placeholder="{{ octopress.search.placeholder | default(value='Search') }}"
+          autocomplete="off"
+          spellcheck="false"
+          aria-label="{{ octopress.search.placeholder | default(value='Search') }}"
+          aria-controls="nav-search-results"
+          aria-expanded="false">
       </fieldset>
+      <div id="nav-search-results" class="search-results-panel" hidden>
+        <p class="search-results-status" aria-live="polite"></p>
+        <ol class="search-results-list"></ol>
+      </div>
     </form>
   {% endif %}
 
