@@ -1,0 +1,77 @@
+{% set octopress = config.extra.octopress %}
+{% set home = get_section(path="_index.md") %}
+{% set sections = octopress.sidebar.sections | default(value=[]) %}
+{% set_global has_sidebar_content = false %}
+
+{% for sidebar_section in sections %}
+  {% if sidebar_section.kind == "recent_posts" %}
+    {% set recent = home.pages | slice(end=sidebar_section.limit | default(value=5)) %}
+    {% if recent | length > 0 %}
+      {% set_global has_sidebar_content = true %}
+    {% endif %}
+  {% elif sidebar_section.kind == "text" %}
+    {% if sidebar_section.content and sidebar_section.content | trim != "" %}
+      {% set_global has_sidebar_content = true %}
+    {% endif %}
+  {% elif sidebar_section.kind == "links" %}
+    {% if sidebar_section.items %}
+      {% for item in sidebar_section.items %}
+        {% if item.name and item.name | trim != "" and item.url and item.url | trim != "" %}
+          {% set_global has_sidebar_content = true %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+
+{% if has_sidebar_content %}
+  <aside class="sidebar">
+    {% for sidebar_section in sections %}
+      {% if sidebar_section.kind == "recent_posts" %}
+        {% set recent = home.pages | slice(end=sidebar_section.limit | default(value=5)) %}
+        {% if recent | length > 0 %}
+          <section>
+            <h1>{{ sidebar_section.title | default(value="Recent Posts") }}</h1>
+            <ul id="recent_posts">
+              {% for recent_post in recent %}
+                <li class="post">
+                  <a href="{{ recent_post.permalink }}">{{ recent_post.title }}</a>
+                </li>
+              {% endfor %}
+            </ul>
+          </section>
+        {% endif %}
+      {% elif sidebar_section.kind == "text" %}
+        {% if sidebar_section.content and sidebar_section.content | trim != "" %}
+          <section>
+            <h1>{{ sidebar_section.title }}</h1>
+            {{ sidebar_section.content | safe }}
+          </section>
+        {% endif %}
+      {% elif sidebar_section.kind == "links" %}
+        {% set_global has_valid_links = false %}
+        {% if sidebar_section.items %}
+          {% for item in sidebar_section.items %}
+            {% if item.name and item.name | trim != "" and item.url and item.url | trim != "" %}
+              {% set_global has_valid_links = true %}
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+        {% if has_valid_links %}
+          <section>
+            <h1>{{ sidebar_section.title }}</h1>
+            <ul>
+              {% for item in sidebar_section.items %}
+                {% if item.name and item.name | trim != "" and item.url and item.url | trim != "" %}
+                  <li>
+                    <a href="{{ item.url }}">{{ item.name }}</a>
+                  </li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+          </section>
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+  </aside>
+{% endif %}

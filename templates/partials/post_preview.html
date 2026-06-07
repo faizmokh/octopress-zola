@@ -1,0 +1,24 @@
+<article>
+  <header>
+    <h1 class="entry-title">
+      <a href="{{ post.permalink }}">{{ post.title }}</a>
+    </h1>
+    {% set item = post %}
+    {% set show_permalink = true %}
+    {% include "partials/post_meta.html" %}
+  </header>
+
+  <div class="entry-content">
+    {% if post.summary %}
+      {{ post.summary | safe }}
+    {% else %}
+      {{ post.content | safe }}
+    {% endif %}
+  </div>
+
+  <footer>
+    {% if post.summary %}
+      <a rel="full-article" href="{{ post.permalink }}">Read on &rarr;</a>
+    {% endif %}
+  </footer>
+</article>

@@ -1,0 +1,7 @@
+{% set octopress = config.extra.octopress %}
+<footer role="contentinfo">
+  <p>
+    Copyright &copy; {{ now() | date(format="%Y") }} - {{ config.title }} -
+    <span class="credit">{{ octopress.footer_credit }}</span>
+  </p>
+</footer>

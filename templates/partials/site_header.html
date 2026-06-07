@@ -1,0 +1,26 @@
+{% set octopress = config.extra.octopress %}
+{% set header_title = octopress.header_title | default(value=octopress.logo_text | default(value=config.title)) %}
+{% set header_subtitle = octopress.header_subtitle | default(value=octopress.site_tagline | default(value="")) %}
+{% set header_logo = octopress.header_logo | default(value=false) %}
+{% set header_alignment = octopress.header_alignment | default(value="center") %}
+<header role="banner">
+  <hgroup class="{% if header_logo and header_logo.path %}has-logo{% else %}text-only{% endif %} align-{{ header_alignment }}">
+    {% if header_logo and header_logo.path %}
+      <div class="header-logo">
+        {% if header_logo.url %}
+          <a href="{{ header_logo.url }}">
+            <img src="{{ get_url(path=header_logo.path) }}" alt="{{ header_logo.alt | default(value=header_title) }}">
+          </a>
+        {% else %}
+          <img src="{{ get_url(path=header_logo.path) }}" alt="{{ header_logo.alt | default(value=header_title) }}">
+        {% endif %}
+      </div>
+    {% endif %}
+    <div class="header-copy">
+      <h1><a href="/">{{ header_title }}</a></h1>
+      {% if header_subtitle %}
+        <h2>{{ header_subtitle }}</h2>
+      {% endif %}
+    </div>
+  </hgroup>
+</header>

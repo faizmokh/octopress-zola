@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}{{ term.name }} - {{ config.title }}{% endblock title %}
+{% block canonical %}{{ current_url | default(value=config.base_url) }}{% endblock canonical %}
+{% block body_attrs %} class="no-sidebar"{% endblock body_attrs %}
+
+{% block content %}
+  <div>
+    <article role="article">
+      <header>
+        <h1 class="entry-title">{{ term.name }}</h1>
+      </header>
+
+      <div class="blog-index">
+        {% for post in term.pages %}
+          {% include "partials/post_preview.html" %}
+        {% endfor %}
+      </div>
+    </article>
+  </div>
+{% endblock content %}

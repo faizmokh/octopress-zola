@@ -1,0 +1,23 @@
+{% set octopress = config.extra.octopress %}
+<nav role="navigation">
+  {% if octopress.rss_enabled %}
+    <ul class="subscription" data-subscription="rss">
+      <li><a href="{{ get_url(path='atom.xml') }}" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+    </ul>
+  {% endif %}
+
+  {% if octopress.search %}
+    <form action="{{ octopress.search.action }}" method="get">
+      <fieldset role="search">
+        <input type="hidden" name="{{ octopress.search.site_scope_param | default(value='sitesearch') }}" value="{{ octopress.search.site_scope }}">
+        <input class="search" type="text" name="{{ octopress.search.query_param | default(value='q') }}" results="0" placeholder="{{ octopress.search.placeholder | default(value='Search') }}">
+      </fieldset>
+    </form>
+  {% endif %}
+
+  <ul role="main-navigation">
+    {% for item in octopress.nav_items %}
+      <li><a href="{{ item.url }}">{{ item.name }}</a></li>
+    {% endfor %}
+  </ul>
+</nav>

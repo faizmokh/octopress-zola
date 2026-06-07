@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+  {% set posts = paginator.pages %}
+  <div class="blog-index">
+    {% for post in posts %}
+      {% include "partials/post_preview.html" %}
+    {% endfor %}
+  </div>
+
+  {% if paginator.number_pagers > 1 %}
+    <div class="pagination">
+      {% if paginator.previous %}
+        <a class="prev" href="{{ paginator.previous }}">Previous</a>
+      {% endif %}
+      <a href="{{ get_url(path='archives/') }}">Archives</a>
+      {% if paginator.next %}
+        <a class="next" href="{{ paginator.next }}">Next</a>
+      {% endif %}
+    </div>
+  {% endif %}
+{% endblock content %}
+
+{% block sidebar %}
+  {% include "partials/sidebar.html" %}
+{% endblock sidebar %}

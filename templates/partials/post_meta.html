@@ -1,0 +1,8 @@
+<p class="meta">
+  {% if item.date %}
+    <time datetime="{{ item.date | date(format='%Y-%m-%d') }}" pubdate>{{ item.date | date(format="%b %d, %Y") }}</time>
+  {% endif %}
+  {% if show_permalink %}
+    &bull; <a rel="bookmark" href="{{ item.permalink }}">Permalink</a>
+  {% endif %}
+</p>

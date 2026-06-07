@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Page Not Found - {{ config.title }}{% endblock title %}
+
+{% block content %}
+  <div>
+    <article role="article">
+      <header>
+        <h1 class="entry-title">Page Not Found</h1>
+      </header>
+
+      <p>Oops, I couldn't find that page! Sorry about that.</p>
+      <p>Maybe try the search box (top right), or look through the <a href="{{ get_url(path='archives/') }}">archives</a>?</p>
+    </article>
+  </div>
+{% endblock content %}
+
+{% block sidebar %}
+  {% include "partials/sidebar.html" %}
+{% endblock sidebar %}

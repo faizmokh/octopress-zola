@@ -1,0 +1,9 @@
+name = "octopress-zola"
+description = "A Zola theme that recreates the classic Octopress.org presentation."
+license = "MIT"
+homepage = "https://github.com/faizmokh/octopress-zola"
+min_version = "0.22.0"
+
+[author]
+name = "faizmokh"
+homepage = "https://github.com/faizmokh"

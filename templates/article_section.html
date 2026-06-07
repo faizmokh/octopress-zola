@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}{{ section.title }} - {{ config.title }}{% endblock title %}
+{% block canonical %}{{ section.permalink }}{% endblock canonical %}
+{% block body_attrs %} class="no-sidebar"{% endblock body_attrs %}
+
+{% block content %}
+  <div>
+    <article role="article">
+      <header>
+        <h1 class="entry-title">{{ section.title }}</h1>
+        {% if section.extra.date %}
+          <p class="meta">
+            <time datetime="{{ section.extra.date }}">{{ section.extra.date }}</time>
+          </p>
+        {% endif %}
+      </header>
+
+      {{ section.content | safe }}
+    </article>
+  </div>
+{% endblock content %}

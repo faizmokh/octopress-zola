@@ -1,0 +1,31 @@
+{% set octopress = config.extra.octopress %}
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}{{ config.title }}{% endblock title %}</title>
+  <meta name="author" content="{{ config.title }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="{{ config.description }}">
+  <link rel="canonical" href="{% block canonical %}{{ current_url | default(value=config.base_url) }}{% endblock canonical %}">
+  {% if config.generate_feeds %}
+    <link href="{{ get_url(path='atom.xml') }}" rel="alternate" title="{{ config.title }}" type="application/atom+xml">
+  {% endif %}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700,700italic|PT+Sans:400,400italic,700,700italic" rel="stylesheet">
+  <link href="{{ get_url(path='screen.css') }}" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="{{ get_url(path='octopress-favicon.png') }}" rel="icon">
+</head>
+<body{% block body_attrs %}{% endblock body_attrs %}>
+  {% include "partials/site_header.html" %}
+  {% include "partials/site_nav.html" %}
+  <div id="main">
+    <div id="content">
+      {% block content %}{% endblock content %}
+      {% block sidebar %}{% endblock sidebar %}
+    </div>
+  </div>
+  {% include "partials/site_footer.html" %}
+</body>
+</html>

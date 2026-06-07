@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page.title }} - {{ config.title }}{% endblock title %}
+{% block canonical %}{{ page.permalink }}{% endblock canonical %}
+{% block body_attrs %} class="no-sidebar"{% endblock body_attrs %}
+
+{% block content %}
+  <div>
+    <article class="hentry" role="article">
+      <header>
+        <h1 class="entry-title">{{ page.title }}</h1>
+        {% if page.date %}
+          {% set item = page %}
+          {% set show_permalink = true %}
+          {% include "partials/post_meta.html" %}
+        {% endif %}
+      </header>
+
+      <div class="entry-content">
+        {{ page.content | safe }}
+      </div>
+
+      <footer>
+        <p class="meta">
+          {% if page.date %}
+            <time datetime="{{ page.date | date(format='%Y-%m-%d') }}">{{ page.date | date(format="%b %d, %Y") }}</time>
+          {% endif %}
+        </p>
+
+        {% if octopress.show_post_navigation and (page.lower or page.higher) %}
+          <nav class="post-navigation" aria-label="Post navigation">
+            {% if page.lower %}
+              <a class="post-navigation-item is-previous" href="{{ page.lower.permalink }}" title="Previous Post: {{ page.lower.title }}">
+                <span class="post-navigation-label">Previous post</span>
+                <span class="post-navigation-title">&laquo; {{ page.lower.title }}</span>
+              </a>
+            {% endif %}
+            {% if page.higher %}
+              <a class="post-navigation-item is-next" href="{{ page.higher.permalink }}" title="Next Post: {{ page.higher.title }}">
+                <span class="post-navigation-label">Next post</span>
+                <span class="post-navigation-title">{{ page.higher.title }} &raquo;</span>
+              </a>
+            {% endif %}
+          </nav>
+        {% endif %}
+      </footer>
+    </article>
+  </div>
+{% endblock content %}

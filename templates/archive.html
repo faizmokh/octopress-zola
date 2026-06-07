@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}{{ section.title }} - {{ config.title }}{% endblock title %}
+{% block canonical %}{{ section.permalink }}{% endblock canonical %}
+{% block body_attrs %} id="archive"{% endblock body_attrs %}
+
+{% block content %}
+  {% set home = get_section(path="_index.md") %}
+  {% set years = home.pages | group_by(attribute="year") %}
+  <div>
+    <article role="article">
+      <header>
+        <h1 class="entry-title">{{ section.title }}</h1>
+      </header>
+
+      <div id="blog-archives">
+        {% for year_name, year_posts in years %}
+          <h2>{{ year_name }}</h2>
+          {% for post in year_posts %}
+            <article>
+              <h1 class="entry-title">
+                <a href="{{ post.permalink }}">{{ post.title }}</a>
+              </h1>
+
+              <time datetime="{{ post.date | date(format='%Y-%m-%d') }}" pubdate>
+                <span class="month">{{ post.date | date(format="%b") }}</span>
+                <span class="day">{{ post.date | date(format="%d") }}</span>
+                <span class="year">{{ post.date | date(format="%Y") }}</span>
+              </time>
+
+              {% if post.taxonomies.categories %}
+                <footer>
+                  <span class="categories">
+                    posted in
+                    {% for category in post.taxonomies.categories %}
+                      <a class="category" href="{{ get_taxonomy_url(kind='categories', name=category) }}">{{ category }}</a>{% if not loop.last %}, {% endif %}
+                    {% endfor %}
+                  </span>
+                </footer>
+              {% endif %}
+            </article>
+          {% endfor %}
+        {% endfor %}
+      </div>
+    </article>
+  </div>
+{% endblock content %}
+
+{% block sidebar %}
+  {% include "partials/sidebar.html" %}
+{% endblock sidebar %}
