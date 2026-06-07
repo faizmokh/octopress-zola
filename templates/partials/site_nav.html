@@ -2,7 +2,16 @@
 <nav role="navigation">
   {% if octopress.rss_enabled %}
     <ul class="subscription" data-subscription="rss">
-      <li><a href="{{ get_url(path='atom.xml') }}" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+      <li>
+        <a class="rss-link" href="{{ get_url(path='atom.xml') }}" rel="subscribe-rss" title="Subscribe via RSS" aria-label="Subscribe via RSS">
+          <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+            <circle cx="3" cy="13" r="1.5" fill="currentColor"/>
+            <path d="M2.5 8.5a5 5 0 0 1 5 5H5.9a3.4 3.4 0 0 0-3.4-3.4V8.5Z" fill="currentColor"/>
+            <path d="M2.5 3.5c5.5 0 10 4.5 10 10h-1.6c0-4.6-3.8-8.4-8.4-8.4V3.5Z" fill="currentColor"/>
+          </svg>
+          <span class="visually-hidden">RSS</span>
+        </a>
+      </li>
     </ul>
   {% endif %}
 

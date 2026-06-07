@@ -74,6 +74,16 @@ a:focus {
   color: var(--link-hover);
 }
 
+.visually-hidden {
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
 p,
 blockquote,
 ul,
@@ -259,6 +269,20 @@ body > nav a:visited {
 body > nav a:hover,
 body > nav a:focus {
   color: #25381d;
+}
+
+body > nav .rss-link {
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+  line-height: 1;
+  min-height: 1.2em;
+}
+
+body > nav .rss-link svg {
+  display: block;
+  height: 0.95em;
+  width: 0.95em;
 }
 
 body > nav form {
