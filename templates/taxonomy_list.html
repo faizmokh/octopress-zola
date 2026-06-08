@@ -2,7 +2,7 @@
 
 {% block title %}{{ taxonomy.name | title }} - {{ config.title }}{% endblock title %}
 {% block canonical %}{{ current_url | default(value=config.base_url) }}{% endblock canonical %}
-{% block body_attrs %} class="no-sidebar"{% endblock body_attrs %}
+{% block body_class %} no-sidebar{% endblock body_class %}
 
 {% block content %}
   <div>

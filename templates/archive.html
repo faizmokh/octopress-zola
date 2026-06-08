@@ -2,7 +2,7 @@
 
 {% block title %}{{ section.title }} - {{ config.title }}{% endblock title %}
 {% block canonical %}{{ section.permalink }}{% endblock canonical %}
-{% block body_attrs %} id="archive"{% endblock body_attrs %}
+{% block body_id %} id="archive"{% endblock body_id %}
 
 {% block content %}
   {% set home = get_section(path="_index.md") %}

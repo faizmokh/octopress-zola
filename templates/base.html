@@ -1,4 +1,8 @@
 {% set octopress = config.extra.octopress %}
+{% set nav_preset = octopress.style.nav_color | default(value="green") %}
+{% if nav_preset != "green" and nav_preset != "blue" and nav_preset != "gray" %}
+  {% set nav_preset = "green" %}
+{% endif %}
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 <head>
@@ -17,7 +21,7 @@
   <link href="{{ get_url(path='screen.css') }}" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="{{ get_url(path='octopress-favicon.png') }}" rel="icon">
 </head>
-<body{% block body_attrs %}{% endblock body_attrs %}>
+<body{% block body_id %}{% endblock body_id %} class="nav-preset-{{ nav_preset }}{% block body_class %}{% endblock body_class %}">
   {% include "partials/site_header.html" %}
   {% include "partials/site_nav.html" %}
   <div id="main">

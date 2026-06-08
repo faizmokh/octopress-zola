@@ -33,7 +33,7 @@ taxonomies = [
 ## Features
 
 - Classic Octopress masthead, navigation, article layout, archive view, and sidebar presentation
-- Configurable navigation, search form, RSS link, footer credit, sharing link, and post navigation
+- Configurable navigation, search form, RSS link, footer credit, sharing link, post navigation, and navbar color presets
 - Theme-local Sass, images, and fonts with no dependency on a parent demo repository
 
 ## Required Site Setup
@@ -62,6 +62,9 @@ url = "/"
 [extra.octopress.search]
 placeholder = "Search"
 
+[extra.octopress.style]
+nav_color = "blue"
+
 [[extra.octopress.sidebar.sections]]
 kind = "recent_posts"
 title = "Recent Posts"
@@ -86,6 +89,15 @@ url = "/"
 For backward compatibility, `logo_text` still falls back into `header_title` and `site_tagline` still falls back into `header_subtitle`.
 
 `header_alignment` supports `left` and `center`.
+
+Navbar presets are configured under `[extra.octopress.style]`:
+
+```toml
+[extra.octopress.style]
+nav_color = "green"
+```
+
+Supported values are `green`, `blue`, and `gray`. If the setting is omitted or uses an unknown value, the theme falls back to the classic Octopress green navbar.
 
 Sidebar visibility is controlled by the templates that include the sidebar partial. If no configured section resolves to visible content, the theme omits the sidebar container entirely.
 
