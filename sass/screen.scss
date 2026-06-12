@@ -270,8 +270,7 @@ h3 {
 body>header,
 body>nav,
 body>footer,
-#content>div,
-#content>div>section {
+#content>div {
   padding-left: 18px;
   padding-right: 18px;
 }
@@ -960,9 +959,7 @@ body>footer a:hover {
   body>nav,
   body>footer,
   #content>div,
-  #content>article,
-  #content>div>article,
-  #content>div>section {
+  #content>article {
     padding-left: 35px;
     padding-right: 35px;
   }
@@ -1013,9 +1010,7 @@ body>footer a:hover {
   body>nav,
   body>footer,
   #content>div,
-  #content>article,
-  #content>div>article,
-  #content>div>section {
+  #content>article {
     padding-left: 55px;
     padding-right: 55px;
   }
